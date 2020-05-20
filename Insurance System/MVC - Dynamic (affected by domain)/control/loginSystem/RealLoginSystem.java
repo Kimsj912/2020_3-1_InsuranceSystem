@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import control.DynamicSystem;
-import control.developSystem.DevelopSystem;
 import control.developSystem.realDevelopSystem.developerAspect.DeveloperTaskSelectSystem;
 import control.developSystem.realDevelopSystem.insuranceRatePermitMan.InsuranceRatePermitTaskSelectSystem;
 import control.developSystem.realDevelopSystem.productPermitMan.ProductPermitTaskSelectSystem;
@@ -16,7 +15,7 @@ import model.data.systemUserData.SystemUserData;
 import view.component.BasicButton;
 import view.component.TitledTextArea;
 
-public class RealLoginSystem extends DevelopSystem {
+public class RealLoginSystem extends LoginSystem {
 
 	// Static
 	private enum EActionCommands {Login}

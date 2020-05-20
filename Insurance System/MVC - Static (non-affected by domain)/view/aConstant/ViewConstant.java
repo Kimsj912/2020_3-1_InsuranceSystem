@@ -36,4 +36,10 @@ public class ViewConstant {
 	public static final Color TitledTextAreaPanelBackground = ViewConstant.ThemeColor;
 	public static final int TitledTextAreaPanelLabelHeight = 20;
 	public static final int TitledTextAreaPanelTextAreaHeightUnit = 20;
+
+	// Titled Radio Button Group
+	public static final Color TitledRadioButtonGroupBackground = ViewConstant.ThemeColor;
+	public static final Color TitledRadioButtonGroupButtonColor = ViewConstant.ThemeColor;
+	public static final Dimension TitledRadioButtonButtonMaximumSize = new Dimension(Integer.MAX_VALUE, 40);
 }
+

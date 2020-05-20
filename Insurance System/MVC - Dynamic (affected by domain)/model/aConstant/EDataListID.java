@@ -6,4 +6,6 @@ public enum EDataListID {
 	ProductPermitManDataListID,
 	InsuranceDataListID,
 	CustomerDataListID,
+	SalesManDataListID,
+	SalesManagerDataListID,
 }
