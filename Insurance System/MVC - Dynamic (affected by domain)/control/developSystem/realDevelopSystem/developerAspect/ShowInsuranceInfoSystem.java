@@ -21,7 +21,7 @@ public class ShowInsuranceInfoSystem extends DevelopSystem {
 
 	@Override
 	public Vector<JComponent> getViewInfo() {
-		AbsInsuranceData insuranceData = this.insuranceList.search(this.insuranceID);
+		AbsInsuranceData insuranceData = this.insuranceDataList.search(this.insuranceID);
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
 		viewInfo.add(new JLabel("요청하신 보험 정보 입니다."));
 		viewInfo.add(new TitledTextArea("이름", 1, insuranceData.getName(), false));

@@ -24,7 +24,7 @@ public class ProductPermitTaskSelectSystem extends DevelopSystem {
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
 		viewInfo.add(new JLabel("인가하실 보험을 선택해 주세요"));
 		for(ProductPermit task : this.jake.getTaskList().getList()) {
-			AbsInsuranceData insuranceData = this.insuranceList.search(task.getTargetInsuranceID());
+			AbsInsuranceData insuranceData = this.insuranceDataList.search(task.getTargetInsuranceID());
 			viewInfo.add(new BasicButton(insuranceData.getName(), Integer.toString(task.getID()), this.actionListener));
 		}
 		return viewInfo;

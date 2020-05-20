@@ -17,7 +17,6 @@ public abstract class DevelopSystem extends DynamicSystem {
 	protected IntISDataList<DeveloperData> developerList;
 	protected IntISDataList<InsuranceRatePermitManData> insuranceRatePermitManList;
 	protected IntISDataList<ProductPermitManData> productPermitManList;
-	protected IntISDataList<AbsInsuranceData> insuranceList;
 	
 	@Override @SuppressWarnings("unchecked")
 	public void associateModel(Vector<IntISDataList<? extends ISData>> datas) {
@@ -26,7 +25,7 @@ public abstract class DevelopSystem extends DynamicSystem {
 			case DeveloperDataListID : this.developerList=(IntISDataList<DeveloperData>) model; break;
 			case InsuranceRatePermitManDataListID : this.insuranceRatePermitManList=(IntISDataList<InsuranceRatePermitManData>) model; break;
 			case ProductPermitManDataListID : this.productPermitManList=(IntISDataList<ProductPermitManData>) model; break;
-			case InsuranceDataListID : this.insuranceList=(IntISDataList<AbsInsuranceData>) model; break;
+			case InsuranceDataListID : this.insuranceDataList=(IntISDataList<AbsInsuranceData>) model; break;
 			default:
 				break;
 			

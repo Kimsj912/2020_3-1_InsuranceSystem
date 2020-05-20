@@ -35,7 +35,7 @@ public class ShowInsuranceForProductPermitSystem extends DevelopSystem {
 	@Override
 	public Vector<JComponent> getViewInfo() {
 		this.targetInsuranceID = this.tasks.search(taskIndex).getTargetInsuranceID();
-		this.insuranceData = this.insuranceList.search(this.targetInsuranceID);
+		this.insuranceData = this.insuranceDataList.search(this.targetInsuranceID);
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
 		viewInfo.add(new JLabel("상품 인가 판단 해주세요"));
 		viewInfo.add(new TitledTextArea("이름", 1, this.insuranceData.getName(), false));

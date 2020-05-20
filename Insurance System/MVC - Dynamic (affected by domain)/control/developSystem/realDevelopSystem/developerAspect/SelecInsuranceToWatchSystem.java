@@ -17,7 +17,7 @@ public class SelecInsuranceToWatchSystem extends DevelopSystem {
 	public Vector<JComponent> getViewInfo() {
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
 		viewInfo.add(new JLabel("보험을 선택하세요."));
-		for(AbsInsuranceData insuranceData : this.insuranceList.getList()) {
+		for(AbsInsuranceData insuranceData : this.insuranceDataList.getList()) {
 			viewInfo.add(new BasicButton(insuranceData.getName(), Integer.toString(insuranceData.getID()), this.actionListener));
 		}
 		return viewInfo;

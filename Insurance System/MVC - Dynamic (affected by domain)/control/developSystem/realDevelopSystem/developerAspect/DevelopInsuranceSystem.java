@@ -59,7 +59,7 @@ public class DevelopInsuranceSystem extends DevelopSystem {
 		data.setContent(this.contentTTA.getContent());
 		data.setInsuranceRateInfo(this.insuranceRateInfoTTA.getContent());
 		data.setLossPercent(Double.parseDouble(this.lossPercentTTA.getContent()));
-		this.insuranceList.add(data);
+		this.insuranceDataList.add(data);
 		
 		for(InsuranceRatePermitManData employee : this.insuranceRatePermitManList.getList()) {
 			if(employee.isWorkable()) {employee.addTask(new InsuranceRatePermit(data.getID()));}

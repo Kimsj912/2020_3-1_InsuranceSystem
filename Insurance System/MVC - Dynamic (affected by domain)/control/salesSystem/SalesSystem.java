@@ -23,10 +23,6 @@ public abstract class SalesSystem extends DynamicSystem {
 	protected IntISDataList<ActivityPlanData> activityPlanList;
 	protected IntISDataList<SalesTrainingPlanData> salesTrainigPlanList;
 	
-	// Associate - only list? and share with other system
-	protected IntISDataList<CustomerData> customerDataList;
-	protected IntISDataList<AbsInsuranceData> insuranceDataList;
-	
 	@Override @SuppressWarnings("unchecked")
 	public void associateModel(Vector<IntISDataList<? extends ISData>> datas) {
 		for(IntISDataList<? extends ISData> model : datas) {

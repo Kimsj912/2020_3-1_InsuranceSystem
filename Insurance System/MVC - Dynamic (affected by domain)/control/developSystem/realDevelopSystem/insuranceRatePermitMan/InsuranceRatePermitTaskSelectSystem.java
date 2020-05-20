@@ -24,7 +24,7 @@ public class InsuranceRatePermitTaskSelectSystem extends DevelopSystem {
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
 		viewInfo.add(new JLabel("요율 검증하실 보험을 선택해 주세요"));
 		for(InsuranceRatePermit task : this.jake.getTaskList().getList()) {
-			AbsInsuranceData insuranceData = this.insuranceList.search(task.getTargetInsuranceID());
+			AbsInsuranceData insuranceData = this.insuranceDataList.search(task.getTargetInsuranceID());
 			viewInfo.add(new BasicButton(insuranceData.getName(), Integer.toString(task.getID()), this.actionListener));
 		}
 		return viewInfo;

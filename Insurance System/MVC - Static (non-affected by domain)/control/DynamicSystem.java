@@ -8,6 +8,8 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import model.data.ISData;
+import model.data.customerData.CustomerData;
+import model.data.insuranceData.AbsInsuranceData;
 import model.dataList.IntISDataList;
 import view.aConstant.ViewConstant;
 
@@ -26,4 +28,10 @@ public abstract class DynamicSystem {
 	public abstract Vector<JComponent> getViewInfo();
 	public abstract DynamicSystem processEvent(ActionEvent e);
 	public void gotoBack() {this.actionListener.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ViewConstant.BackButtonIdentifier));}
+
+	
+	// Connect insurance between developSystem and salesSystem
+	// Associate - only list? and share with other system
+	protected IntISDataList<CustomerData> customerDataList;
+	protected IntISDataList<AbsInsuranceData> insuranceDataList;
 }
