@@ -11,6 +11,8 @@ import control.DynamicSystem;
 import control.developSystem.realDevelopSystem.developerAspect.DeveloperTaskSelectSystem;
 import control.developSystem.realDevelopSystem.insuranceRatePermitMan.InsuranceRatePermitTaskSelectSystem;
 import control.developSystem.realDevelopSystem.productPermitMan.ProductPermitTaskSelectSystem;
+import control.salesSystem.realSalesSystem.salesManAspect.SalesManTaskSelectSystem;
+import control.salesSystem.realSalesSystem.salesManagerAspect.SalesManagerTaskSelectSystem;
 import model.data.systemUserData.SystemUserData;
 import view.component.BasicButton;
 import view.component.TitledTextArea;
@@ -40,6 +42,9 @@ public class RealLoginSystem extends LoginSystem {
 		if(this.login(this.developerList.getList())) {return new DeveloperTaskSelectSystem();}
 		if(this.login(this.insuranceRatePermitManList.getList())) {return new InsuranceRatePermitTaskSelectSystem();}
 		if(this.login(this.productPermitManList.getList())) {return new ProductPermitTaskSelectSystem();}
+		if(this.login(this.salesManList.getList())) {return new SalesManTaskSelectSystem();}
+		if(this.login(this.salesManagerList.getList())) {return new SalesManagerTaskSelectSystem();}
+		
 		JOptionPane.showMessageDialog(this.panel, "계정이 없는데연"); return null;
 	}
 	private boolean login(Vector<? extends SystemUserData> list) {

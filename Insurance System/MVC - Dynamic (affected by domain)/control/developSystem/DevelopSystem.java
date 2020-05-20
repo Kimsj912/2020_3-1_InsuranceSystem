@@ -27,6 +27,9 @@ public abstract class DevelopSystem extends DynamicSystem {
 			case InsuranceRatePermitManDataListID : this.insuranceRatePermitManList=(IntISDataList<InsuranceRatePermitManData>) model; break;
 			case ProductPermitManDataListID : this.productPermitManList=(IntISDataList<ProductPermitManData>) model; break;
 			case InsuranceDataListID : this.insuranceList=(IntISDataList<AbsInsuranceData>) model; break;
+			default:
+				break;
+			
 			}
 		}
 	}

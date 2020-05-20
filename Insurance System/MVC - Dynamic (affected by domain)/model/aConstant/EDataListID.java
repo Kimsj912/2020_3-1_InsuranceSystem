@@ -8,4 +8,6 @@ public enum EDataListID {
 	CustomerDataListID,
 	SalesManDataListID,
 	SalesManagerDataListID,
+	ActivityPlanDataListID,
+	SalesTrainigPlanDataListID,
 }

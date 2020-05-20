@@ -16,40 +16,16 @@ public class SalesTrainingPlanData extends ISData {
 	
 	
 	// getter & setter
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public String getPlace() {
-		return place;
-	}
-	public void setPlace(String place) {
-		this.place = place;
-	}
-	public String getGoal() {
-		return goal;
-	}
-	public void setGoal(String goal) {
-		this.goal = goal;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getTarget() {
-		return target;
-	}
-	public void setTarget(String target) {
-		this.target = target;
-	}
+	public Date getDate() {return date;}
+	public void setDate(Date date) {this.date = date;}
+	public String getPlace() {return place;}
+	public void setPlace(String place) {this.place = place;}
+	public String getGoal() {return goal;}
+	public void setGoal(String goal) {this.goal = goal;}
+	public String getContent() {return content;}
+	public void setContent(String content) {this.content = content;}
+	public String getTitle() {return title;}
+	public void setTitle(String title) {this.title = title;}
+	public String getTarget() {return target;}
+	public void setTarget(String target) {this.target = target;}
 }
