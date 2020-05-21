@@ -1,4 +1,4 @@
-package control.salesSystem.realSalesSystem.salesManAspect;
+package control.salesSystem.realSalesSystem.salesManAspect.SigninCustomer;
 
 import java.awt.event.ActionEvent;
 import java.util.Vector;
@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import control.DynamicSystem;
 import control.salesSystem.SalesSystem;
+import control.salesSystem.realSalesSystem.salesManAspect.LookupAvailableProduct.ShowAvailableProductSystem;
 import model.data.customerData.CustomerData;
 import model.data.insuranceData.AbsInsuranceData;
 import view.component.BasicButton;
@@ -43,36 +44,37 @@ public class ShowInsuranceInfoToCustomerSystem extends SalesSystem {
 		return viewInfo;
 	}
 
-	//no use
-	@Override
-	public DynamicSystem processEvent(ActionEvent e) {
-		switch(EActionCommands.valueOf(e.getActionCommand())) {
-		case SigninProduct : 
-            int result = JOptionPane.showConfirmDialog(null, "보험가입을 진행하시겠습니까?", "SignInProduct", JOptionPane.YES_NO_OPTION);
-            if(result==0) { //yes
-            	JOptionPane.showMessageDialog(null, "보험가입이 완료되었습니다.", "SignInProduct", JOptionPane.INFORMATION_MESSAGE);
-            	this.customerData.setJoinedInsuranceData(joinInsuranceData());
-            	return new ShowAvailableProductSystem(this.customerData);
-            }
-			break;
-		default:
-			break;
-		}
-		return null;
-	}
-	
 	public Vector<AbsInsuranceData> joinInsuranceData() {
 		Vector<AbsInsuranceData> customerInsurance = this.customerData.getJoinedInsuranceData();
 		Vector<AbsInsuranceData> returnValue = customerInsurance;
-		
+
 		for (AbsInsuranceData i : customerInsurance) {
 			returnValue.add(i);
 		}
-		for(AbsInsuranceData i :insuranceDataList.getList()) {
+		for (AbsInsuranceData i : insuranceDataList.getList()) {
 			if (i.getID() == this.insuranceID) {
 				returnValue.add(i);
 			}
 		}
 		return returnValue;
 	}
+
+	@Override
+	public DynamicSystem processEvent(ActionEvent e) {
+		switch (EActionCommands.valueOf(e.getActionCommand())) {
+		case SigninProduct:
+			int result = JOptionPane.showConfirmDialog(null, "보험가입을 진행하시겠습니까?", "SignInProduct",
+					JOptionPane.YES_NO_OPTION);
+			if (result == 0) { // yes
+				JOptionPane.showMessageDialog(null, "보험가입이 완료되었습니다.", "SignInProduct", JOptionPane.INFORMATION_MESSAGE);
+				this.customerData.setJoinedInsuranceData(joinInsuranceData());
+				return new ShowAvailableProductSystem(this.customerData);
+			}
+			break;
+		default:
+			break;
+		}
+		return null;
+	}3
+
 }

@@ -1,4 +1,4 @@
-package control.salesSystem.realSalesSystem.salesManAspect;
+package control.salesSystem.realSalesSystem.salesManAspect.WatchSalesTrainingPlan;
 
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;

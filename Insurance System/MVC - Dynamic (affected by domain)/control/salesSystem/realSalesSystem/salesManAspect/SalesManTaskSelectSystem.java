@@ -8,6 +8,10 @@ import javax.swing.JLabel;
 
 import control.DynamicSystem;
 import control.salesSystem.SalesSystem;
+import control.salesSystem.realSalesSystem.salesManAspect.LookupAvailableProduct.SearchCustomerSystem;
+import control.salesSystem.realSalesSystem.salesManAspect.SigninCustomer.SinginCustomerSystem;
+import control.salesSystem.realSalesSystem.salesManAspect.WatchActivityPlan.WatchActivityPlanSystem;
+import control.salesSystem.realSalesSystem.salesManAspect.WatchSalesTrainingPlan.WatchSalesTrainingPlanSystem;
 import view.component.BasicButton;
 
 public class SalesManTaskSelectSystem extends SalesSystem {

@@ -1,4 +1,4 @@
-package control.salesSystem.realSalesSystem.salesManAspect;
+package control.salesSystem.realSalesSystem.salesManAspect.LookupAvailableProduct;
 
 import java.awt.event.ActionEvent;
 import java.util.Vector;

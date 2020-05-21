@@ -12,14 +12,16 @@ import model.data.taskData.AbsTask;
 public class CustomerData extends AbsEmployeeData<AbsTask> {
 	
 	// Attributes
-	private Vector<EAccidentHistory> accidentHistory;
-	private Vector<EFamilyIllHistory> illHistory;
+	private EAccidentHistory accidentHistory;
+	private EFamilyIllHistory illHistory;
 	private String accountNum, email, job, name, phoneNum, residence, socialSecurityNum;
 	private int age, property;
 	private int[] signInInsurance;
-	private Vector<EGender> gender;
+	private EGender gender;
 	private boolean paymentPermit;
 	private Vector<AbsInsuranceData> joinedInsuranceData;
+	
+	
 	
 	// Constructor
 	public CustomerData() {
@@ -29,17 +31,17 @@ public class CustomerData extends AbsEmployeeData<AbsTask> {
 
 	// Getter & Setter
 	public String getAccountNum() {return accountNum;}
-	public Vector<EAccidentHistory> getAccidentHistory() {return accidentHistory;}
-	public void setAccidentHistory(Vector<EAccidentHistory> accidentHistory) {this.accidentHistory = accidentHistory;}
-	public Vector<EFamilyIllHistory> getIllHistory() {return illHistory;}
-	public void setIllHistory(Vector<EFamilyIllHistory> illHistory) {this.illHistory = illHistory;}
+	public EAccidentHistory getAccidentHistory() {return accidentHistory;}
+	public void setAccidentHistory(EAccidentHistory eAccidentHistory) {this.accidentHistory = eAccidentHistory;}
+	public EFamilyIllHistory getIllHistory() {return illHistory;}
+	public void setIllHistory(EFamilyIllHistory eFamilyIllHistory) {this.illHistory = eFamilyIllHistory;}
 	public void setAccountNum(String accountNum) {this.accountNum = accountNum;}
 	public int getAge() {return age;}
 	public void setAge(int age) {this.age = age;}
 	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}
-	public Vector<EGender> isGender() {return gender;}
-	public void setGender(Vector<EGender> vector) {this.gender = vector;}
+	public EGender isGender() {return gender;}
+	public void setGender(EGender vector) {this.gender = vector;}
 	public String getJob() {return job;}
 	public void setJob(String job) {this.job = job;}
 	public String getName() {return name;}
@@ -61,5 +63,5 @@ public class CustomerData extends AbsEmployeeData<AbsTask> {
 	public void setJoinedInsuranceData(Vector<AbsInsuranceData> joinedInsuranceData) {
 		this.joinedInsuranceData = joinedInsuranceData;
 	}
-		
+
 }

@@ -1,4 +1,4 @@
-package control.salesSystem.realSalesSystem.salesManAspect;
+package control.salesSystem.realSalesSystem.salesManAspect.LookupAvailableProduct;
 
 import java.awt.event.ActionEvent;
 import java.util.Vector;
@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import control.DynamicSystem;
 import control.salesSystem.SalesSystem;
+import control.salesSystem.realSalesSystem.salesManAspect.SigninCustomer.ShowInsuranceInfoToCustomerSystem;
 import model.data.customerData.CustomerData;
 import model.data.insuranceData.AbsInsuranceData;
 import model.dataList.IntISDataList;

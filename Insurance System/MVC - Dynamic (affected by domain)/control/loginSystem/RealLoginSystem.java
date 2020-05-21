@@ -44,7 +44,7 @@ public class RealLoginSystem extends LoginSystem {
 		if(this.login(this.productPermitManList.getList())) {return new ProductPermitTaskSelectSystem();}
 		if(this.login(this.salesManList.getList())) {return new SalesManTaskSelectSystem();}
 		if(this.login(this.salesManagerList.getList())) {return new SalesManagerTaskSelectSystem();}
-		
+		if(this.login(this.customerDataList.getList())) {return new SalesManagerTaskSelectSystem();}
 		JOptionPane.showMessageDialog(this.panel, "계정이 없는데연"); return null;
 	}
 	private boolean login(Vector<? extends SystemUserData> list) {
