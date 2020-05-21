@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import control.DynamicSystem;
 import control.salesSystem.SalesSystem;
+import model.aConstant.EAccidentHistory;
 import model.aConstant.ETargetCustomer;
 import model.data.activityPlanData.ActivityPlanData;
 import view.component.BasicButton;
@@ -83,7 +84,8 @@ public class SaveActivityPlanSystem extends SalesSystem {
 		data.setSalesGoal(Integer.parseInt(((TitledTextArea)this.pocket.get(EInitializingCommands.salesGoal.name())).getContent()));
 		data.setActivityGoal(((TitledTextArea)this.pocket.get(EInitializingCommands.activityGoal.name())).getContent());
 		data.setAdditionalJobOffer(Integer.parseInt(((TitledTextArea)this.pocket.get(EInitializingCommands.additionalJobOffer.name())).getContent()));
-		data.setSalesTargetCustomer(((TitledTextArea)this.pocket.get(EInitializingCommands.salesTargetCustomer.name())).getContent());
+		data.setSalesTargetCustomer(
+				cleaningTargetCustomerRadioBtn(((TitledRadioButtonGroup)this.pocket.get(EInitializingCommands.salesTargetCustomer.name())).getSelectedOptionNames()));
 		
 		this.activityPlanList.add(data);
 		}catch(DateTimeParseException e) {
@@ -95,5 +97,14 @@ public class SaveActivityPlanSystem extends SalesSystem {
 	private LocalDate extractDate(String content) {
 		return LocalDate.parse(content);
 
+	}
+	public Vector<ETargetCustomer> cleaningTargetCustomerRadioBtn(Vector<String> names) {
+		Vector<ETargetCustomer> enumtmp = new Vector<ETargetCustomer>();
+		for (String s : names) {
+			for (ETargetCustomer aEnum : ETargetCustomer.values()) {
+				if (aEnum.toString().equals(s)) enumtmp.add(aEnum);
+			}
+		}
+		return enumtmp;
 	}
 }

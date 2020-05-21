@@ -32,7 +32,7 @@ public class WatchDetailActivityPlanSystem extends SalesSystem {
 		viewInfo.add(new TitledTextArea("전체 매출 목표", 1, Integer.toString(watchingActivityPlanData.getSalesGoal()), false));
 		viewInfo.add(new TitledTextArea("전체 활동목표", 10, watchingActivityPlanData.getActivityGoal(), false));
 		viewInfo.add(new TitledTextArea("추가 구인 필요량 ", 1, Integer.toString(watchingActivityPlanData.getAdditionalJobOffer()), false));
-		viewInfo.add(new TitledTextArea("주력 고객 선정 ", 3, watchingActivityPlanData.getSalesTargetCustomer(), false));
+		viewInfo.add(new TitledTextArea("주력 고객 선정 ", 3, watchingActivityPlanData.getSalesTargetCustomer().toString(), false));
 		
 		return viewInfo;
 	}

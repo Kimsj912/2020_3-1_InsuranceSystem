@@ -1,14 +1,16 @@
 package model.data.SalesTrainingPlanData;
 
 import java.time.LocalDateTime;
+import java.util.Vector;
 
+import model.aConstant.ETrainingTargetEmployee;
 import model.data.ISData;
 
 public class SalesTrainingPlanData extends ISData {
 	
 	
 	private String title;
-	private String target;
+	private Vector<ETrainingTargetEmployee> target;
 	private LocalDateTime date;
 	private String place;
 	private String goal;
@@ -26,6 +28,6 @@ public class SalesTrainingPlanData extends ISData {
 	public void setContent(String content) {this.content = content;}
 	public String getTitle() {return title;}
 	public void setTitle(String title) {this.title = title;}
-	public String getTarget() {return target;}
-	public void setTarget(String target) {this.target = target;}
+	public Vector<ETrainingTargetEmployee> getTarget() {return target;}
+	public void setTarget(Vector<ETrainingTargetEmployee> target) {this.target = target;}
 }

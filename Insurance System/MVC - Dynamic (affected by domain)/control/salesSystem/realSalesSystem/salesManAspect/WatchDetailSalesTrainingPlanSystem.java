@@ -16,7 +16,6 @@ public class WatchDetailSalesTrainingPlanSystem extends SalesSystem {
 
 	private int salesTrainingPlanID;
 	private SalesTrainingPlanData watchingActivityPlanData;
-	private SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public WatchDetailSalesTrainingPlanSystem(int ID) {
 		salesTrainingPlanID = ID;
@@ -29,7 +28,7 @@ public class WatchDetailSalesTrainingPlanSystem extends SalesSystem {
 		viewInfo.add(new TitledTextArea("제목", 3, watchingActivityPlanData.getTitle(), false));
 		viewInfo.add(new TitledTextArea("날짜", 1, watchingActivityPlanData.getDate().toString(), false));
 		viewInfo.add(new TitledTextArea("장소", 1, watchingActivityPlanData.getPlace(), false));
-		viewInfo.add(new TitledTextArea("교육대상", 3, watchingActivityPlanData.getTarget(), false));
+//		viewInfo.add(new TitledRadioButtonGroup("교육대상", watchingActivityPlanData.getTarget(), true));
 		viewInfo.add(new TitledTextArea("교육목표 ", 5, watchingActivityPlanData.getGoal(), false));
 		viewInfo.add(new TitledTextArea("교육내용", 15, watchingActivityPlanData.getContent(), false));
 		
