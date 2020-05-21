@@ -13,19 +13,20 @@ import model.data.customerData.CustomerData;
 import model.dataList.IntISDataList;
 import model.dataList.realDataList.ISDataList;
 import view.component.BasicButton;
+import view.component.TitledTextArea;
 
 public class SearchCustomerSystem extends SalesSystem {
 
 	private enum EActionCommands {search}
 
-	private JTextField customerNameTTA;
+	private TitledTextArea customerNameTTA;
 	
 	@Override
 	public Vector<JComponent> getViewInfo() {
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
 		
 		viewInfo.add(new JLabel("고객명을 입력해주세요."));
-		this.customerNameTTA = new JTextField();
+		this.customerNameTTA = new TitledTextArea("고객명", 1, "", true);
 		viewInfo.add(customerNameTTA);
 		viewInfo.add(new BasicButton("조회",EActionCommands.search.name(),this.actionListener));
 		
@@ -34,7 +35,7 @@ public class SearchCustomerSystem extends SalesSystem {
 	public IntISDataList<CustomerData> search() {
 		IntISDataList<CustomerData> searchedCustomerList=new ISDataList<CustomerData>();
 		for(CustomerData customerData : this.customerDataList.getList()) {
-			if(customerData.getName().equals(this.customerNameTTA.getText())) {
+			if(customerData.getName().equals(this.customerNameTTA.getContent())) {
 				searchedCustomerList.add(customerData);
 			}
 		}

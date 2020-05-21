@@ -25,7 +25,6 @@ public class WatchActivityPlanSystem extends SalesSystem {
 
 	@Override
 	public DynamicSystem processEvent(ActionEvent e) {
-		//여기 뭐 제한 걸어야할 듯?
 		return new WatchDetailActivityPlanSystem(Integer.parseInt(e.getActionCommand()));
 		
 	}

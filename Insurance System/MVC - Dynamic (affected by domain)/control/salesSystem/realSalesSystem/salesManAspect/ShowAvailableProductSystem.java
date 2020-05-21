@@ -17,7 +17,6 @@ import view.component.BasicButton;
 public class ShowAvailableProductSystem extends SalesSystem {
 
 	private CustomerData customerData;
-	
 	public ShowAvailableProductSystem(CustomerData customerData) {
 		this.customerData = customerData;
 		
@@ -25,10 +24,18 @@ public class ShowAvailableProductSystem extends SalesSystem {
 	public IntISDataList<AbsInsuranceData> searching() {
 		IntISDataList<AbsInsuranceData> availableInsuranceList= new ISDataList<AbsInsuranceData>();
 		
-		// 고객 식 마련해서 가능한 것 찾아서 availableInsuranceList에 넣기
-		// 일단은 전체 보험 상품을 보여주려고 함.
-		for (AbsInsuranceData insuranceData:this.insuranceDataList.getList()) {
-			availableInsuranceList.add(insuranceData);
+		for (AbsInsuranceData insuranceData : this.insuranceDataList.getList()) {
+			if (this.customerData.getJoinedInsuranceData().isEmpty()) {
+				availableInsuranceList.add(insuranceData);
+			} else {
+				for (AbsInsuranceData absInsuranceData : this.customerData.getJoinedInsuranceData()) {
+					if (insuranceData.getID() == absInsuranceData.getID()) {
+						break;
+					}else {
+						availableInsuranceList.add(insuranceData);
+					}
+				}
+			}
 		}
 		return availableInsuranceList;
 	}
@@ -47,7 +54,6 @@ public class ShowAvailableProductSystem extends SalesSystem {
 
 	@Override
 	public DynamicSystem processEvent(ActionEvent e) {
-		// showInsuranceInfoSystem에 true false이런거 넣어서 설정할수도 있을 것 같은데, 있는건 안건들이는게 좋으니까 일단 나눠둠.
 		return new ShowInsuranceInfoToCustomerSystem(Integer.parseInt(e.getActionCommand()), this.customerData);
 
 	}

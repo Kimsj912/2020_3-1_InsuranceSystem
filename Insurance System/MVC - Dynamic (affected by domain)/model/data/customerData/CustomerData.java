@@ -4,7 +4,9 @@ import java.util.Vector;
 
 import model.aConstant.EAccidentHistory;
 import model.aConstant.EFamilyIllHistory;
+import model.aConstant.EGender;
 import model.data.employeeData.AbsEmployeeData;
+import model.data.insuranceData.AbsInsuranceData;
 import model.data.taskData.AbsTask;
 
 public class CustomerData extends AbsEmployeeData<AbsTask> {
@@ -15,7 +17,9 @@ public class CustomerData extends AbsEmployeeData<AbsTask> {
 	private String accountNum, email, job, name, phoneNum, residence, socialSecurityNum;
 	private int age, property;
 	private int[] signInInsurance;
-	private boolean gender, paymentPermit;
+	private Vector<EGender> gender;
+	private boolean paymentPermit;
+	private Vector<AbsInsuranceData> joinedInsuranceData;
 	
 	// Constructor
 	public CustomerData() {
@@ -34,8 +38,8 @@ public class CustomerData extends AbsEmployeeData<AbsTask> {
 	public void setAge(int age) {this.age = age;}
 	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}
-	public boolean isGender() {return gender;}
-	public void setGender(boolean gender) {this.gender = gender;}
+	public Vector<EGender> isGender() {return gender;}
+	public void setGender(Vector<EGender> vector) {this.gender = vector;}
 	public String getJob() {return job;}
 	public void setJob(String job) {this.job = job;}
 	public String getName() {return name;}
@@ -52,5 +56,10 @@ public class CustomerData extends AbsEmployeeData<AbsTask> {
 	public void setSocialSecurityNum(String socialSecurityNum) {this.socialSecurityNum = socialSecurityNum;}
 	public boolean isPaymentPermit() {return this.paymentPermit;}
 	public void PaymentPermit() {this.paymentPermit = true;}
+	public Vector<AbsInsuranceData> getJoinedInsuranceData() {return joinedInsuranceData;}
+
+	public void setJoinedInsuranceData(Vector<AbsInsuranceData> joinedInsuranceData) {
+		this.joinedInsuranceData = joinedInsuranceData;
+	}
 		
 }
