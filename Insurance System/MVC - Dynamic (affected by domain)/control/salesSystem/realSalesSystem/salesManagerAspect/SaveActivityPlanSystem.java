@@ -3,8 +3,6 @@ package control.salesSystem.realSalesSystem.salesManagerAspect;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.JComponent;
@@ -13,7 +11,6 @@ import javax.swing.JOptionPane;
 
 import control.DynamicSystem;
 import control.salesSystem.SalesSystem;
-import model.aConstant.EAccidentHistory;
 import model.aConstant.ETargetCustomer;
 import model.data.activityPlanData.ActivityPlanData;
 import view.component.BasicButton;
@@ -29,36 +26,37 @@ public class SaveActivityPlanSystem extends SalesSystem {
 		title, mainTitle, date, activityGoal, salesGoal, additionalJobOffer, salesTargetCustomer, save};
 	
 	
-	Map<String, JComponent> pocket;
+	private JLabel mainTitleJLB;
+	private TitledTextArea titleTTA;
+	private TitledTextArea activityGoalTTA;
+	private TitledTextArea dateTTA;
+	private TitledTextArea salesGoalTTA;
+	private TitledTextArea additionalJobOfferTTA;
+	private TitledRadioButtonGroup salesTargetCustomerTTA;
+	private BasicButton saveBTN;
 
 	
 	@Override
 	public Vector<JComponent> getViewInfo() {
-		this.pocket = new LinkedHashMap<String, JComponent>();
-
-		JLabel mainTitleJLB = new JLabel("활동계획란을 작성하여 주세요.");
-		TitledTextArea titleTTA = new TitledTextArea("제목",2,"",true); //int
-		TitledTextArea dateTTA = new TitledTextArea("활동목표기간(yyyy-MM-dd)",1,"",true); 
-		TitledTextArea salesGoalTTA = new TitledTextArea("전체 매출 목표",1,"",true); 
-		TitledTextArea activityGoalTTA = new TitledTextArea("전체 활동 목표",10,"",true);
-		TitledTextArea additionalJobOfferTTA = new TitledTextArea("추가 구인 필요량",1,"",true); //int
-		TitledRadioButtonGroup salesTargetCustomerTTA = new TitledRadioButtonGroup("주력 고객 선정",ETargetCustomer.class,false);
-		BasicButton saveBTN = new BasicButton("저장", EActionCommands.Save.name(), this.actionListener);
-
-		
-		this.pocket.put(EInitializingCommands.mainTitle.name(),mainTitleJLB);
-		this.pocket.put(EInitializingCommands.title.name(),titleTTA);
-		this.pocket.put(EInitializingCommands.date.name(),dateTTA);
-		this.pocket.put(EInitializingCommands.salesGoal.name(),salesGoalTTA);
-		this.pocket.put(EInitializingCommands.activityGoal.name(),activityGoalTTA);
-		this.pocket.put(EInitializingCommands.additionalJobOffer.name(),additionalJobOfferTTA);
-		this.pocket.put(EInitializingCommands.salesTargetCustomer.name(),salesTargetCustomerTTA);
-		this.pocket.put(EInitializingCommands.save.name(),saveBTN);
-		
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
-		for(JComponent viewComponent : pocket.values()) {
-			viewInfo.add(viewComponent);
-		}				
+
+		this.mainTitleJLB = new JLabel("활동계획란을 작성하여 주세요.");
+		this.titleTTA = new TitledTextArea("제목",2,"",true); //int
+		this.dateTTA = new TitledTextArea("활동목표기간(yyyy-MM-dd)",1,"",true); 
+		this.salesGoalTTA = new TitledTextArea("전체 매출 목표",1,"",true); 
+		this.activityGoalTTA = new TitledTextArea("전체 활동 목표",10,"",true);
+		this.additionalJobOfferTTA = new TitledTextArea("추가 구인 필요량",1,"",true); //int
+		this.salesTargetCustomerTTA = new TitledRadioButtonGroup("주력 고객 선정",ETargetCustomer.class,false);
+		this.saveBTN = new BasicButton("저장", EActionCommands.Save.name(), this.actionListener);
+
+		viewInfo.add(mainTitleJLB);
+		viewInfo.add(titleTTA);
+		viewInfo.add(dateTTA);
+		viewInfo.add(salesGoalTTA);
+		viewInfo.add(activityGoalTTA);
+		viewInfo.add(additionalJobOfferTTA);
+		viewInfo.add(salesTargetCustomerTTA);
+		viewInfo.add(saveBTN);
 
 		return viewInfo;
 	}
@@ -69,7 +67,6 @@ public class SaveActivityPlanSystem extends SalesSystem {
 		case Save :
 			if(this.save()) { 
             JOptionPane.showMessageDialog(null, "저장이 완료되었습니다.", "SaveInsuranceData", JOptionPane.INFORMATION_MESSAGE);
-			this.pocket.clear();
             this.gotoBack(); 
 			}
 			break;
@@ -79,13 +76,12 @@ public class SaveActivityPlanSystem extends SalesSystem {
 	private boolean save() {
 		try {
 		ActivityPlanData data = new ActivityPlanData();
-		data.setTitle(((TitledTextArea)this.pocket.get(EInitializingCommands.title.name())).getContent());
-		data.setSalesDuration(extractDate(((TitledTextArea)this.pocket.get(EInitializingCommands.date.name())).getContent()));
-		data.setSalesGoal(Integer.parseInt(((TitledTextArea)this.pocket.get(EInitializingCommands.salesGoal.name())).getContent()));
-		data.setActivityGoal(((TitledTextArea)this.pocket.get(EInitializingCommands.activityGoal.name())).getContent());
-		data.setAdditionalJobOffer(Integer.parseInt(((TitledTextArea)this.pocket.get(EInitializingCommands.additionalJobOffer.name())).getContent()));
-		data.setSalesTargetCustomer(
-				cleaningTargetCustomerRadioBtn(((TitledRadioButtonGroup)this.pocket.get(EInitializingCommands.salesTargetCustomer.name())).getSelectedOptionNames()));
+		data.setTitle(this.titleTTA.getContent());
+		data.setSalesDuration(LocalDate.parse(this.dateTTA.getContent()));
+		data.setSalesGoal(Integer.parseInt(this.salesGoalTTA.getContent()));
+		data.setActivityGoal(this.activityGoalTTA.getContent());
+		data.setAdditionalJobOffer(Integer.parseInt(this.additionalJobOfferTTA.getContent()));
+		data.setSalesTargetCustomer(radioBtnCleaner(this.salesTargetCustomerTTA.getSelectedOptionNames()));
 		
 		this.activityPlanList.add(data);
 		}catch(DateTimeParseException e) {
@@ -94,17 +90,11 @@ public class SaveActivityPlanSystem extends SalesSystem {
 		}
 		return true;
 	}
-	private LocalDate extractDate(String content) {
-		return LocalDate.parse(content);
-
-	}
-	public Vector<ETargetCustomer> cleaningTargetCustomerRadioBtn(Vector<String> names) {
-		Vector<ETargetCustomer> enumtmp = new Vector<ETargetCustomer>();
-		for (String s : names) {
-			for (ETargetCustomer aEnum : ETargetCustomer.values()) {
-				if (aEnum.toString().equals(s)) enumtmp.add(aEnum);
-			}
+	public Vector<ETargetCustomer> radioBtnCleaner(Vector<String> s) {
+		Vector<ETargetCustomer> vect = new Vector<ETargetCustomer>();
+		for(int i=0;i<s.size();i++) {
+			vect.add(ETargetCustomer.valueOf(s.get(i)));
 		}
-		return enumtmp;
+		return vect;
 	}
 }

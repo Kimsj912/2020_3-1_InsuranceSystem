@@ -75,6 +75,6 @@ public class ShowInsuranceInfoToCustomerSystem extends SalesSystem {
 			break;
 		}
 		return null;
-	}3
+	}
 
 }
