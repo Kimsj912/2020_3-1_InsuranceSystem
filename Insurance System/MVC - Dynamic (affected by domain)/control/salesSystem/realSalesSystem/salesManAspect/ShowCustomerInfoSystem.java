@@ -12,6 +12,7 @@ import control.salesSystem.SalesSystem;
 import model.data.customerData.CustomerData;
 import model.dataList.IntISDataList;
 import view.component.BasicButton;
+import view.component.BasicTable;
 
 public class ShowCustomerInfoSystem extends SalesSystem {
 

@@ -1,7 +1,10 @@
 package control.salesSystem.realSalesSystem.salesManagerAspect;
 
 import java.awt.event.ActionEvent;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.JComponent;
@@ -10,8 +13,10 @@ import javax.swing.JOptionPane;
 
 import control.DynamicSystem;
 import control.salesSystem.SalesSystem;
+import model.aConstant.ETargetCustomer;
 import model.data.activityPlanData.ActivityPlanData;
 import view.component.BasicButton;
+import view.component.TitledRadioButtonGroup;
 import view.component.TitledTextArea;
 
 public class SaveActivityPlanSystem extends SalesSystem {
@@ -19,31 +24,40 @@ public class SaveActivityPlanSystem extends SalesSystem {
 	// Static
 	private enum EActionCommands {Save}
 		
-	/*date type인 salesDuration때문에 3개를 받음.*/
-	private TitledTextArea titleTTA = new TitledTextArea("제목",2,"",true); //int
-	private TitledTextArea salesDuration_yearTTA = new TitledTextArea("활동연도(YYYY)",1,"",true); //int
-	private TitledTextArea salesDuration_monthTTA = new TitledTextArea("활동월(MM)",1,"",true); //int
-	private TitledTextArea salesDuration_dayTTA = new TitledTextArea("활동일(dd)",1,"",true); //int
-	private TitledTextArea salesGoalTTA = new TitledTextArea("전체 매출 목표",1,"",true); //int
-	private TitledTextArea activityGoalTTA = new TitledTextArea("전체 활동 목표",10,"",true);
-	private TitledTextArea additionalJobOfferTTA = new TitledTextArea("추가 구인 필요량",1,"",true); //int
-	private TitledTextArea salesTargetCustomerTTA = new TitledTextArea("주력 고객 선정",3,"",true);
+	private enum EInitializingCommands {
+		title, mainTitle, date, activityGoal, salesGoal, additionalJobOffer, salesTargetCustomer, save};
+	
+	
+	Map<String, JComponent> pocket;
+
 	
 	@Override
 	public Vector<JComponent> getViewInfo() {
+		this.pocket = new LinkedHashMap<String, JComponent>();
+
+		JLabel mainTitleJLB = new JLabel("활동계획란을 작성하여 주세요.");
+		TitledTextArea titleTTA = new TitledTextArea("제목",2,"",true); //int
+		TitledTextArea dateTTA = new TitledTextArea("활동목표기간(yyyy-MM-dd)",1,"",true); 
+		TitledTextArea salesGoalTTA = new TitledTextArea("전체 매출 목표",1,"",true); 
+		TitledTextArea activityGoalTTA = new TitledTextArea("전체 활동 목표",10,"",true);
+		TitledTextArea additionalJobOfferTTA = new TitledTextArea("추가 구인 필요량",1,"",true); //int
+		TitledRadioButtonGroup salesTargetCustomerTTA = new TitledRadioButtonGroup("주력 고객 선정",ETargetCustomer.class,false);
+		BasicButton saveBTN = new BasicButton("저장", EActionCommands.Save.name(), this.actionListener);
+
+		
+		this.pocket.put(EInitializingCommands.mainTitle.name(),mainTitleJLB);
+		this.pocket.put(EInitializingCommands.title.name(),titleTTA);
+		this.pocket.put(EInitializingCommands.date.name(),dateTTA);
+		this.pocket.put(EInitializingCommands.salesGoal.name(),salesGoalTTA);
+		this.pocket.put(EInitializingCommands.activityGoal.name(),activityGoalTTA);
+		this.pocket.put(EInitializingCommands.additionalJobOffer.name(),additionalJobOfferTTA);
+		this.pocket.put(EInitializingCommands.salesTargetCustomer.name(),salesTargetCustomerTTA);
+		this.pocket.put(EInitializingCommands.save.name(),saveBTN);
+		
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
-		
-		viewInfo.add(new JLabel("활동계획란을 작성하여 주세요."));
-		viewInfo.add(this.titleTTA);
-		viewInfo.add(this.salesDuration_yearTTA);
-		viewInfo.add(this.salesDuration_monthTTA);
-		viewInfo.add(this.salesDuration_dayTTA);
-		viewInfo.add(this.salesGoalTTA);
-		viewInfo.add(this.activityGoalTTA);
-		viewInfo.add(this.additionalJobOfferTTA);
-		viewInfo.add(this.salesTargetCustomerTTA);
-		
-		viewInfo.add(new BasicButton("저장", EActionCommands.Save.name(), this.actionListener));
+		for(JComponent viewComponent : pocket.values()) {
+			viewInfo.add(viewComponent);
+		}				
 
 		return viewInfo;
 	}
@@ -52,28 +66,34 @@ public class SaveActivityPlanSystem extends SalesSystem {
 	public DynamicSystem processEvent(ActionEvent e) {
 		switch (EActionCommands.valueOf(e.getActionCommand())) {
 		case Save :
-			this.save(); 
+			if(this.save()) { 
             JOptionPane.showMessageDialog(null, "저장이 완료되었습니다.", "SaveInsuranceData", JOptionPane.INFORMATION_MESSAGE);
-			this.gotoBack(); 
+			this.pocket.clear();
+            this.gotoBack(); 
+			}
 			break;
 		}
 		return null;
 	}
-	@SuppressWarnings("deprecation")
-	private void save() {
+	private boolean save() {
+		try {
 		ActivityPlanData data = new ActivityPlanData();
-		data.setTitle(this.titleTTA.getContent());
-		Date durationdate = new Date();
-		durationdate.setYear(Integer.parseInt(salesDuration_yearTTA.getContent()));
-		durationdate.setMonth(Integer.parseInt(salesDuration_monthTTA.getContent()));
-		durationdate.setDate(Integer.parseInt(salesDuration_dayTTA.getContent()));
-		data.setSalesDuration(durationdate);
-		data.setSalesGoal(Integer.parseInt(this.salesGoalTTA.getContent()));
-		data.setActivityGoal(this.activityGoalTTA.getContent());
-		data.setAdditionalJobOffer(Integer.parseInt(this.additionalJobOfferTTA.getContent()));
-		data.setSalesTargetCustomer(this.salesTargetCustomerTTA.getContent());
+		data.setTitle(((TitledTextArea)this.pocket.get(EInitializingCommands.title.name())).getContent());
+		data.setSalesDuration(extractDate(((TitledTextArea)this.pocket.get(EInitializingCommands.date.name())).getContent()));
+		data.setSalesGoal(Integer.parseInt(((TitledTextArea)this.pocket.get(EInitializingCommands.salesGoal.name())).getContent()));
+		data.setActivityGoal(((TitledTextArea)this.pocket.get(EInitializingCommands.activityGoal.name())).getContent());
+		data.setAdditionalJobOffer(Integer.parseInt(((TitledTextArea)this.pocket.get(EInitializingCommands.additionalJobOffer.name())).getContent()));
+		data.setSalesTargetCustomer(((TitledTextArea)this.pocket.get(EInitializingCommands.salesTargetCustomer.name())).getContent());
 		
 		this.activityPlanList.add(data);
-		
+		}catch(DateTimeParseException e) {
+			JOptionPane.showMessageDialog(this.panel, "입력 내용을 다시한번 확인해주십시오.");
+			return false;
+		}
+		return true;
+	}
+	private LocalDate extractDate(String content) {
+		return LocalDate.parse(content);
+
 	}
 }

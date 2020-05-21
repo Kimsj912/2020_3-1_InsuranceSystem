@@ -1,6 +1,6 @@
 package model.data.SalesTrainingPlanData;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import model.data.ISData;
 
@@ -9,15 +9,15 @@ public class SalesTrainingPlanData extends ISData {
 	
 	private String title;
 	private String target;
-	private Date date;
+	private LocalDateTime date;
 	private String place;
 	private String goal;
 	private String content;
 	
 	
 	// getter & setter
-	public Date getDate() {return date;}
-	public void setDate(Date date) {this.date = date;}
+	public LocalDateTime getDate() {return date;}
+	public void setDate(LocalDateTime localDateTime) {this.date = localDateTime;}
 	public String getPlace() {return place;}
 	public void setPlace(String place) {this.place = place;}
 	public String getGoal() {return goal;}

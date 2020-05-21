@@ -28,8 +28,7 @@ public class WatchDetailActivityPlanSystem extends SalesSystem {
 		Vector<JComponent> viewInfo = new Vector<JComponent>();
 		viewInfo.add(new JLabel("조회하신 활동계획의 세부 정보입니다."));
 		viewInfo.add(new TitledTextArea("제목", 1, watchingActivityPlanData.getTitle(), false));
-		
-		viewInfo.add(new TitledTextArea("날짜", 1, fm.format(watchingActivityPlanData.getSalesDuration()), false));
+		viewInfo.add(new TitledTextArea("날짜(YYYY-MM-DD)", 1, watchingActivityPlanData.getSalesDuration().toString(), false));
 		viewInfo.add(new TitledTextArea("전체 매출 목표", 1, Integer.toString(watchingActivityPlanData.getSalesGoal()), false));
 		viewInfo.add(new TitledTextArea("전체 활동목표", 10, watchingActivityPlanData.getActivityGoal(), false));
 		viewInfo.add(new TitledTextArea("추가 구인 필요량 ", 1, Integer.toString(watchingActivityPlanData.getAdditionalJobOffer()), false));

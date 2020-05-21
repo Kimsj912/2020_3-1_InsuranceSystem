@@ -1,21 +1,21 @@
 package model.data.activityPlanData;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import model.data.ISData;
 
 public class ActivityPlanData extends ISData {
 	
 	private String title;
-	private Date salesDuration;
+	private LocalDate salesDuration;
 	private int salesGoal;
 	private String ActivityGoal;
 	private int additionalJobOffer;
 	private String salesTargetCustomer;
 	
 	// getter & setter
-	public Date getSalesDuration() {return salesDuration;}
-	public void setSalesDuration(Date salesDuration) {this.salesDuration = salesDuration;}
+	public LocalDate getSalesDuration() {return salesDuration;}
+	public void setSalesDuration(LocalDate localDate) {this.salesDuration = localDate;}
 	public int getSalesGoal() {return salesGoal;}
 	public void setSalesGoal(int salesGoal) {this.salesGoal = salesGoal;}	
 	public String getActivityGoal() {return ActivityGoal;}
