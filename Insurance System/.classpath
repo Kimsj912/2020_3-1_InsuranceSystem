@@ -5,8 +5,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="MVC - Static (non-affected by domain)"/>
-	<classpathentry kind="src" path="Main"/>
-	<classpathentry kind="src" path="MVC - Dynamic (affected by domain)"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
