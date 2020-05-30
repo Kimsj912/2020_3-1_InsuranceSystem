@@ -9,13 +9,14 @@ import model.data.insuranceData.AbsInsuranceData;
 import model.data.insuranceData.realInsuranceData.DiseaseInsuranceData;
 import model.data.taskData.developTask.ProductPermitTask;
 import model.dataList.realDataList.ISDataList;
+import view.aConstant.InsuranceSystemViewConstant;
 import view.component.BasicLabel;
 import view.component.SeparateLine;
+import view.component.button.ActionButton;
 import view.component.button.LinkButton;
-import view.component.button.SelectButton;
 import view.component.group.StaticGroup;
 import view.component.textArea.OutputTextArea;
-import view.insuranceSystemView.InsuranceSystemPanel;
+import view.insuranceSystemView.InsuranceSystemView;
 import view.panel.BasicPanel;
 
 public class ShowInsuranceForProductPermitSystem extends DevelopSystem {
@@ -38,9 +39,9 @@ public class ShowInsuranceForProductPermitSystem extends DevelopSystem {
 		this.targetInsuranceID = this.tasks.search(this.taskIndex).getTargetInsuranceID();
 		this.insuranceData = this.insuranceList.search(this.targetInsuranceID);
 		
-		InsuranceSystemPanel view = new InsuranceSystemPanel();
+		InsuranceSystemView view = new InsuranceSystemView();
 		view.addComponent(new BasicLabel("상품 인가"));
-		view.addComponent(new SeparateLine(Color.black, 1));
+		view.addComponent(new SeparateLine(Color.black));
 		
 		view.addComponent(new OutputTextArea("이름", insuranceData.getName()));
 		view.addComponent(new OutputTextArea("손해율", Double.toString(insuranceData.getLossPercent())));
@@ -51,13 +52,13 @@ public class ShowInsuranceForProductPermitSystem extends DevelopSystem {
 		view.addComponent(new OutputTextArea("요율 설명", insuranceData.getInsuranceRateInfo()));
 		
 		StaticGroup btnGroup = new StaticGroup(new int[] {2});
-		btnGroup.addGroupComponent(new SelectButton("합격", EActionCommands.Permit.name(), this.actionListener));
-		btnGroup.addGroupComponent(new SelectButton("불합격", EActionCommands.Ban.name(), this.actionListener));
+		btnGroup.addGroupComponent(new ActionButton("합격", EActionCommands.Permit.name(), this.actionListener));
+		btnGroup.addGroupComponent(new ActionButton("불합격", EActionCommands.Ban.name(), this.actionListener));
 		view.addComponent(btnGroup);
 		
-		view.addLinkBtn(
-				new LinkButton("그럴듯한 링크", "", this.actionListener),
-				new LinkButton("오 멋져", "", this.actionListener)
+		view.addToLinkPanel(
+				new LinkButton(InsuranceSystemViewConstant.SomeThingLookGreat, "", this.actionListener),
+				new LinkButton(InsuranceSystemViewConstant.SomeThingLookNide, "", this.actionListener)
 		);
 		return view;
 	}

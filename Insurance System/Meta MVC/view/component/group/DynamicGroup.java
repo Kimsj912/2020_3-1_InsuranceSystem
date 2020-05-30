@@ -23,6 +23,6 @@ public class DynamicGroup extends JPanel {
 	public void addGroupComponent(Component...comps) {for(Component comp : comps) {this.addGroupComponent(comp);}}
 	public void addGroupComponent(Component comp) {
 		this.add(comp);
-		this.add(new SeparateLine(ViewConstant.BasicGroupBorderColor, 1));
+		this.add(new SeparateLine(ViewConstant.BasicGroupBorderColor));
 	}
 }

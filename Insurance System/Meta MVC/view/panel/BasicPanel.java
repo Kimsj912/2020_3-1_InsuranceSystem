@@ -3,13 +3,11 @@ package view.panel;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
-public abstract class BasicPanel extends JPanel {
+public interface BasicPanel {
 	
 	// Initialize Time Use
-	public abstract void addComponent(JComponent comp);
-	public abstract void addBackButton(ActionListener actionListener);
-	public abstract void addEmptyToolSpace();
+	public void addComponent(JComponent comp);
+	public void addBackButton(ActionListener actionListener);
+	public void addEmptyToolSpace();
 }

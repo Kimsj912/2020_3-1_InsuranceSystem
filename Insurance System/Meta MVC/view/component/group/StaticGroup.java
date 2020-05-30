@@ -42,7 +42,7 @@ public class StaticGroup extends JPanel {
 			innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.X_AXIS));
 			this.innerPanels.add(innerPanel);
 			this.add(innerPanel);
-			this.add(new SeparateLine(ViewConstant.BasicGroupBorderColor, 1));
+			this.add(new SeparateLine(ViewConstant.BasicGroupBorderColor));
 		}
 		this.remove(this.getComponents()[this.getComponents().length-1]);
 	}

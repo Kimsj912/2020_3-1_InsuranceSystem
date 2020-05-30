@@ -26,7 +26,7 @@ public class ButtonConstant {
 	public static final Color LogoutButtonForeground = new Color(161,165,177);
 	public static final Color LogoutButtonBackground = ViewConstant.ThemeColor;
 	
-	// Select Button
+	// Select Button + ActionButton
 	public static final Color SelectButtonForeground =new Color(106,107,112);
 	public static final Color SelectButtonBackground_Normal = Color.white;
 	public static final Color SelectButtonBackground_Clicked = new Color(214,231,248);

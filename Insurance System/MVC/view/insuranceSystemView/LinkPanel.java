@@ -20,8 +20,8 @@ public class LinkPanel extends JPanel {
 		this.setPreferredSize(new Dimension(230, Integer.MAX_VALUE));
 	}
 	
-	public void addLinkBtn(JComponent comp) {
+	public void addToLinkPanel(JComponent comp) {
 		this.add(comp);
-		this.add(new SeparateLine(InsuranceSystemViewConstant.LinkPanelSeperatorColor, 1));
+		this.add(new SeparateLine(InsuranceSystemViewConstant.LinkPanelSeperatorColor));
 	}
 }

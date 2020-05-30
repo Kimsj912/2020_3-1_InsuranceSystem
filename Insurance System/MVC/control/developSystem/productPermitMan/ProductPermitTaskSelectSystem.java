@@ -8,13 +8,14 @@ import control.developSystem.DevelopSystem;
 import model.data.employeeData.developEmployeeData.ProductPermitManData;
 import model.data.insuranceData.AbsInsuranceData;
 import model.data.taskData.developTask.ProductPermitTask;
+import view.aConstant.InsuranceSystemViewConstant;
 import view.component.BasicLabel;
 import view.component.SeparateLine;
 import view.component.button.LinkButton;
 import view.component.button.SelectButton;
 import view.component.group.DynamicGroup;
 import view.component.textArea.OutputTextArea;
-import view.insuranceSystemView.InsuranceSystemPanel;
+import view.insuranceSystemView.InsuranceSystemView;
 import view.panel.BasicPanel;
 
 public class ProductPermitTaskSelectSystem extends DevelopSystem {
@@ -27,9 +28,9 @@ public class ProductPermitTaskSelectSystem extends DevelopSystem {
 
 	@Override
 	public BasicPanel getPanel() {
-		InsuranceSystemPanel view = new InsuranceSystemPanel();
+		InsuranceSystemView view = new InsuranceSystemView();
 		view.addComponent(new BasicLabel("보험 선택"));
-		view.addComponent(new SeparateLine(Color.black, 1));
+		view.addComponent(new SeparateLine(Color.black));
 		
 		if(this.loginPPM.getTaskList().getList().size()==0) {
 			view.addComponent(new OutputTextArea("처리할 업무가 없습니다.", ""));
@@ -42,9 +43,9 @@ public class ProductPermitTaskSelectSystem extends DevelopSystem {
 			view.addComponent(selectBtnGroup);
 		}
 		
-		view.addLinkBtn(
-				new LinkButton("그럴듯한 링크", "", this.actionListener),
-				new LinkButton("오 멋져", "", this.actionListener)
+		view.addToLinkPanel(
+				new LinkButton(InsuranceSystemViewConstant.SomeThingLookGreat, "", this.actionListener),
+				new LinkButton(InsuranceSystemViewConstant.SomeThingLookNide, "", this.actionListener)
 		);
 		return view;
 	}

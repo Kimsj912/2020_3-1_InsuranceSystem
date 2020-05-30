@@ -5,18 +5,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import view.aConstant.InsuranceSystemViewConstant;
 import view.panel.BasicPanel;
 
 @SuppressWarnings("serial")
-public class InsuranceSystemPanel extends BasicPanel {
+public class InsuranceSystemView extends JPanel implements BasicPanel {
 	
 	// Component
 	private CenterPanel centerPanel;
 	
 	// Constructor
-	public InsuranceSystemPanel() {
+	public InsuranceSystemView() {
 		// Set Attributes
 		this.setBackground(InsuranceSystemViewConstant.InsuranceSystemPanelBackground);
 		this.setLayout(new BorderLayout());
@@ -30,7 +31,7 @@ public class InsuranceSystemPanel extends BasicPanel {
 	}
 	
 	// Create Time Use
-	public void addLinkBtn(JComponent...comps) {this.centerPanel.addLinkBtn(comps);}
+	public void addToLinkPanel(JComponent...comps) {this.centerPanel.addToLinkPanel(comps);}
 	public void setLinkPanelWidth(int w) {this.centerPanel.setLinkPanelWidth(w);}
 	
 	// Initialize Time Use

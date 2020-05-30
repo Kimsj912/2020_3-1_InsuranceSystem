@@ -3,6 +3,8 @@ package view.component.button;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
+import javax.swing.SwingConstants;
+
 import view.aConstant.ButtonConstant;
 
 @SuppressWarnings("serial")
@@ -18,5 +20,6 @@ public class LinkButton extends BasicButton {
 		this.setClickColor(ButtonConstant.LinkButtonClickColor);
 		this.setMouseOnColor(ButtonConstant.LinkButtonMouseOnColor);
 		this.setForeground(ButtonConstant.LinkButtonForegroundColor);
+		this.setHorizontalAlignment(SwingConstants.LEFT);
 	}
 }

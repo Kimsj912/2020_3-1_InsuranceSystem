@@ -5,6 +5,10 @@ import java.awt.Font;
 
 public class InsuranceSystemViewConstant {
 
+	// 
+	public static final String SomeThingLookGreat = "Void";
+	public static final String SomeThingLookNide = "Null";
+	
 	// InsuranceSystemPanel
 	public static final Color InsuranceSystemPanelBackground = new Color(101, 116, 147);
 	public static final int LeftRightMargin = 200, DownMargin = 100;

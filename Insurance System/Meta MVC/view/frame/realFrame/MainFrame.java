@@ -1,5 +1,7 @@
 package view.frame.realFrame;
 
+import java.awt.Component;
+
 import javax.swing.JFrame;
 
 import view.aConstant.ViewConstant;
@@ -24,9 +26,9 @@ public class MainFrame extends JFrame implements IntFrame {
 	
 	// Any Time Use
 	@Override public void showPanel(BasicPanel view) {
-		if(this.nowPanel!=null) {this.remove(this.nowPanel);}
+		if(this.nowPanel!=null) {this.remove((Component) this.nowPanel);}
 		this.nowPanel = view;
-		this.add(view);
+		this.add((Component) view);
 		this.revalidate();
 		this.repaint();
 	}

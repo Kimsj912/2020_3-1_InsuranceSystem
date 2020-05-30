@@ -41,7 +41,7 @@ public class CenterPanel extends JPanel {
 	}
 	
 	// Create Time Use
-	public void addLinkBtn(JComponent...comps) {for(JComponent comp : comps) {this.linkPanel.addLinkBtn(comp);}}
+	public void addToLinkPanel(JComponent...comps) {for(JComponent comp : comps) {this.linkPanel.addToLinkPanel(comp);}}
 	public void setLinkPanelWidth(int w) {this.linkPanel.setPreferredSize(new Dimension(w, Integer.MAX_VALUE));}
 	
 	// Initialize Time Use

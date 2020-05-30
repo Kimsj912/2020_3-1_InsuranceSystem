@@ -12,7 +12,7 @@ import view.component.BasicLabel;
 import view.component.SeparateLine;
 import view.component.button.LinkButton;
 import view.component.textArea.OutputTextArea;
-import view.insuranceSystemView.InsuranceSystemPanel;
+import view.insuranceSystemView.InsuranceSystemView;
 import view.panel.BasicPanel;
 
 public class ShowInsuranceInfoSystem extends DevelopSystem {
@@ -28,9 +28,9 @@ public class ShowInsuranceInfoSystem extends DevelopSystem {
 	@Override
 	public BasicPanel getPanel() {
 		AbsInsuranceData insuranceData = this.insuranceList.search(this.insuranceID);
-		InsuranceSystemPanel view = new InsuranceSystemPanel();
+		InsuranceSystemView view = new InsuranceSystemView();
 		view.addComponent(new BasicLabel("보험 정보 확인"));
-		view.addComponent(new SeparateLine(Color.black, 1));
+		view.addComponent(new SeparateLine(Color.black));
 		
 		view.addComponent(new OutputTextArea("이름", insuranceData.getName()));
 		view.addComponent(new OutputTextArea("손해율", Double.toString(insuranceData.getLossPercent())));
@@ -42,7 +42,7 @@ public class ShowInsuranceInfoSystem extends DevelopSystem {
 		view.addComponent(new OutputTextArea("요율 검증 여부", Boolean.toString(insuranceData.isInsuranceratePermit())));
 		view.addComponent(new OutputTextArea("상품 인가 여부", Boolean.toString(insuranceData.isProductPermit())));
 		
-		view.addLinkBtn(
+		view.addToLinkPanel(
 				new LinkButton("보험 설계", EActionCommands.InsuranceDesign.name(), this.actionListener),
 				new LinkButton("보험 정보 확인", EActionCommands.WatchInsuranceData.name(), this.actionListener)
 		);
